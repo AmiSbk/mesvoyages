@@ -15,7 +15,7 @@ class Visite
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $VSG = null;
+    private ?string $ville = null;
 
     #[ORM\Column(length: 50)]
     private ?string $pays = null;
@@ -35,19 +35,20 @@ class Visite
     #[ORM\Column(nullable: true)]
     private ?int $tempmax = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getVSG(): ?string
+    public function getVille(): ?string
     {
-        return $this->VSG;
+        return $this->ville;
     }
 
-    public function setVSG(string $VSG): self
+    public function setVille(string $ville): self
     {
-        $this->VSG = $VSG;
+        $this->ville = $ville;
 
         return $this;
     }

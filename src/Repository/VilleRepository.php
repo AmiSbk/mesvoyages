@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Visite;
+use App\Entity\Ville;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Visite>
+ * @extends ServiceEntityRepository<Ville>
  *
- * @method Visite|null find($id, $lockMode = null, $lockVersion = null)
- * @method Visite|null findOneBy(array $criteria, array $orderBy = null)
- * @method Visite[]    findAll()
- * @method Visite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Ville|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Ville|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Ville[]    findAll()
+ * @method Ville[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class VisiteRepository extends ServiceEntityRepository
+class VilleRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Visite::class);
+        parent::__construct($registry, Ville::class);
     }
 
-    public function save(Visite $entity, bool $flush = false): void
+    public function save(Ville $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class VisiteRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Visite $entity, bool $flush = false): void
+    public function remove(Ville $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -38,21 +38,9 @@ class VisiteRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
-    /**
-     * Retourne toutes les visites triées sur un champ
-     * @param type $champ
-     * @param type $ordre
-     * @return visite[]
-     */
-    public function findAllOrderBy($champ ,$ordre): array{
-        return $this->createQueryBuilder('v')
-                 ->orderBy('v.'.$champ, $ordre)
-                 ->getQuery()
-                 ->getResult();
-    }
+
 //    /**
-//     * @return Visite[] Returns an array of Visite objects
+//     * @return Ville[] Returns an array of Ville objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -66,7 +54,7 @@ class VisiteRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Visite
+//    public function findOneBySomeField($value): ?Ville
 //    {
 //        return $this->createQueryBuilder('v')
 //            ->andWhere('v.exampleField = :val')
