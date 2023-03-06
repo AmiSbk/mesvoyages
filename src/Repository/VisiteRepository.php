@@ -39,6 +39,14 @@ class VisiteRepository extends ServiceEntityRepository
         }
     }
     
+      public function add(Visite $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
     /**
      * Retourne toutes les visites triées sur un champ
      * @param type $champ
