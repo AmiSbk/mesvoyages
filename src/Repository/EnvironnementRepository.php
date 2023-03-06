@@ -38,6 +38,15 @@ class EnvironnementRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
+    public function add(Environnement $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
 //    /**
 //     * @return Environnement[] Returns an array of Environnement objects

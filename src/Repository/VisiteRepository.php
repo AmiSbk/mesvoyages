@@ -39,7 +39,7 @@ class VisiteRepository extends ServiceEntityRepository
         }
     }
     
-      public function add(Visite $entity, bool $flush = false): void
+    public function add(Visite $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
