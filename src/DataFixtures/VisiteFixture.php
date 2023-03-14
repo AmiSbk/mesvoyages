@@ -17,7 +17,7 @@ class VisiteFixture extends Fixture
         //génération des enregistrements
         for($k=0 ; $k<100 ; $k++){
             $visite = new Visite();
-            $visite->setVSG($faker->city)
+            $visite->setVille($faker->city)
                     ->setPays($faker->country)
                     ->setDatecreation($faker->dateTimeBetween('-10 years','now'))
                     ->setTempmin($faker->numberBetween(-20, 10))

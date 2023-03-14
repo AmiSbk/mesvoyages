@@ -53,21 +53,21 @@ class AdminVoyagesController extends AbstractController{
         
     /**
      * @Route("/admin/suppr/{id}", name="admin.voyage.suppr")
-     * @param Visite $visite
+     * @param visite $visite
      * @return Response
      */
-    public function suppr(Visite $visite) : Response{
+    public function suppr(visite $visite) : Response{
         $this->repository->remove($visite, true);
         return $this->redirectToRoute('admin.voyages');
     }
     
      /**
      * @Route("/admin/edit/{id}", name="admin.voyage.edit")
-     * @param Visite $visite
+     * @param visite $visite
      * @param Request $request
      * @return Response
      */
-    public function edit(Visite $visite, Request $request) : Response{
+    public function edit(visite $visite, Request $request) : Response{
         $formVisite = $this->createForm(VisiteType::class, $visite);
         
         $formVisite->handleRequest($request);
@@ -87,7 +87,7 @@ class AdminVoyagesController extends AbstractController{
      * @return Response
      */
     public function ajout( Request $request) : Response{
-        $visite = new Visite();
+        $visite = new visite();
         $formVisite = $this->createForm(VisiteType::class, $visite);
         
         $formVisite->handleRequest($request);
