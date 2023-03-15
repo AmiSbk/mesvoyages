@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VisiteRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -14,9 +16,10 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
 #[ORM\Entity(repositoryClass: VisiteRepository::class)]
 /**
- *
+ * ORM\Entity(repositoryClass=VisiteRepository::class)
  * @Vich\Uploadable
  */
 class Visite
@@ -49,12 +52,12 @@ class Visite
 
     #[ORM\ManyToMany(targetEntity: Environnement::class)]
     private Collection $environnements;
-    
+    #@Assert\Image(mimeTypes="Image/jpeg")
     /**
      * NOTE: This is not a mapped field or entity metadata, juste a simple property.
      *
      * @Vich\UploadableField(mapping="visites", fileNameProperty="imageName")
-     * @Assert\Image(mimeTypes="Image/jpeg")
+     * 
      * @var File|null
      */
     private $imageFile;
@@ -206,15 +209,15 @@ class Visite
         return $this->imageName;
     }
 
-    function setImageFile(File $imageFile): self {
+    function setImageFile(?File $imageFile) {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadFile) {
-            $this->updated_at = new \DateTime('now');    
+            $this->updated_at = new DateTime('now');    
         }
         return $this;
     }
 
-    function setImageName($imageName): self {
+    function setImageName(string $imageName) {
         $this->imageName = $imageName;
         return $this;
     }
@@ -230,6 +233,11 @@ class Visite
 
         return $this;
     }
+    
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
      public function validate(ExecutionContextInterface $context){
         $image = $this->getImageFile();
         if($image != null && $image != ""){

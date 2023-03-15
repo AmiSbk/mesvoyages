@@ -24,6 +24,7 @@ final class Version20230307095612 extends AbstractMigration
         $this->addSql('ALTER TABLE visite_environnement DROP FOREIGN KEY FK_6690F746BAFB82A1');
         $this->addSql('DROP TABLE visite');
         $this->addSql('DROP TABLE visite_environnement');
+        
     }
 
     public function down(Schema $schema): void

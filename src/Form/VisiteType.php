@@ -39,6 +39,7 @@ class VisiteType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => true,
                 'required' => false
+
             ])
             ->add('imageFile', FileType::class, [
                 'required' => false,
