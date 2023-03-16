@@ -57,7 +57,7 @@ class Visite
      * NOTE: This is not a mapped field or entity metadata, juste a simple property.
      *
      * @Vich\UploadableField(mapping="visites", fileNameProperty="imageName")
-     * 
+     * @Assert\Image(mimeTypes="image/jpeg")
      * @var File|null
      */
     private $imageFile;
@@ -209,15 +209,15 @@ class Visite
         return $this->imageName;
     }
 
-    function setImageFile(?File $imageFile) {
+    function setImageFile(File $imageFile): self {
         $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadFile) {
-            $this->updated_at = new DateTime('now');    
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');    
         }
         return $this;
     }
 
-    function setImageName(string $imageName) {
+    function setImageName(string $imageName): self {
         $this->imageName = $imageName;
         return $this;
     }
